@@ -2,6 +2,7 @@ import React from "react";
 import Home from "../excel";
 import Details from "../comment/details/index";
 import Gmme from "../comment/gmme/index";
+import Tchishe from "../comment/Tchishe/index";
 // import Details from "../pages/details";
 import Mine from "../comment/mine";
 import { Navigate } from "react-router";
@@ -29,7 +30,7 @@ const routes = [
     exact: true,
     element: (
       <>
-        <div>啥都没有</div>
+        <Tchishe/>
       </>
     ),
     children: [
