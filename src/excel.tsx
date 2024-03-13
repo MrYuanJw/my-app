@@ -5,7 +5,7 @@ import ExcelJS from "exceljs";
 import FileSaver from "file-saver";
 var dataSource: any[] = [];
 
-for (let i = 1; i < 30000; i++) {
+for (let i = 1; i < 99999; i++) {
   dataSource.push({
     key: i,
     name: `name-${i}`,
@@ -113,16 +113,25 @@ export default function Excel() {
   };
   // 子线程导出Excel
   const workerExportExcel = async () => {
+    console.log('====================================');
+    console.log('进来了吗');
+    console.log('====================================');
     const file: any = await new Promise((resolve) => {
       // const myWorker = new MMworker();
       const myWorker = new Worker(
         new URL("./excel.worker.ts", import.meta.url)
       );
+      console.log('====================================');
+      console.log(myWorker);
+      console.log('====================================');
       myWorker.postMessage({
         columns,
         dataSource,
       });
       myWorker.onmessage = (e: { data: { data: unknown } }) => {
+        console.log('====================================');
+        console.log(e);
+        console.log('====================================');
         resolve(e.data.data); // 关闭worker线程
         myWorker.terminate();
       };

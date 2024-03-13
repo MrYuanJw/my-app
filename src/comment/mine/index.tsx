@@ -3,22 +3,6 @@ import VirtualList from "rc-virtual-list";
 import { Avatar, List } from "antd";
 import { post } from "../../NewRequest";
 import axios from "axios";
-// interface UserItem {
-//   email: string;
-//   gender: string;
-//   name: {
-//     first: string;
-//     last: string;
-//     title: string;
-//   };
-//   nat: string;
-//   picture: {
-//     large: string;
-//     medium: string;
-//     thumbnail: string;
-//   };
-// }
-
 const ContainerHeight = 400;
 
 const App: React.FC = () => {
@@ -81,6 +65,7 @@ const App: React.FC = () => {
     }
   };
 
+ 
   return (
     <List>
       <VirtualList

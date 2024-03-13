@@ -1,38 +1,47 @@
-import React, { useState } from 'react';
+import React, { createContext, useEffect, useRef, useState } from "react";
+import Dome from "./dome";
+export const GuaContext: any = createContext(null);
 
 const App = () => {
-  const [playerHealth, setPlayerHealth] = useState(100);
-  const [enemyHealth, setEnemyHealth] = useState(100);
-  const [message, setMessage] = useState('开始战斗！');
+  const [count, setCount] = useState(0);
+  const countRef = useRef(count);
+  useEffect(() => {
+    countRef.current = count;
+  }, [count]);
 
-  const attack = () => {
-    const playerDamage = Math.floor(Math.random() * 10) + 1;
-    const enemyDamage = Math.floor(Math.random() * 15) + 1;
+  useEffect(() => {
+    const setTime = setInterval(() => {
+      console.log(countRef.current, "----count-setInterval");
+    }, 1000);
+    return () => {
+      clearInterval(setTime);
+    };
+  }, []); // 加上依赖项
 
-    setPlayerHealth(playerHealth - enemyDamage);
-    setEnemyHealth(enemyHealth - playerDamage);
-
-    setMessage(`你对敌人造成了 ${playerDamage} 点伤害。敌人对你造成了 ${enemyDamage} 点伤害。`);
-
-    if (playerHealth <= 0) {
-      setMessage('你被敌人击败了！');
-    } else if (enemyHealth <= 0) {
-      setMessage('你战胜了敌人！');
-    }
+  const obj = {
+    prop: 42,
+    data: {
+      num: 99,
+    },
   };
 
+  Object.freeze(obj);
+
+  obj.data.num = 33;
+  // Throws an error in strict mode
+
+  console.log(obj.data.num);
+  // Expected output: 42
+
   return (
-    <div>
-      <h1>文字战斗游戏</h1>
+    <>
+      <div onClick={() => setCount((pre) => pre + 1)}>{count}</div>
       <div>
-        <p>玩家生命值: {playerHealth}</p>
-        <p>敌人生命值: {enemyHealth}</p>
-        <p>{message}</p>
-        <button onClick={attack} disabled={playerHealth <= 0 || enemyHealth <= 0}>
-          发动攻击
-        </button>
+        <GuaContext.Provider value={{count, setCount}}>
+          <Dome></Dome>
+        </GuaContext.Provider>
       </div>
-    </div>
+    </>
   );
 };
 

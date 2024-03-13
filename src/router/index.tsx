@@ -14,7 +14,7 @@ const routes = [
       // {
       //     path:'params/:id/:title/:content',
       //     element:<Params/>,
-      // },
+      // }
       // {
       //     path:'search',
       //     element:<SearchRoute/>,

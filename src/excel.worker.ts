@@ -26,11 +26,19 @@ onmessage = (e) => {
     key: item.key,
     width: 32,
   }));
+  console.log('====================================');
+  console.log(workBookColumns,'ddddddddddddd');
+  console.log('====================================');
   worksheet.columns = workBookColumns;
   worksheet.addRows(dataSource);
+  console.log(worksheet,'133333333333');
+  console.log(workbook,'444444444444444444444444444444444444444');
 
   // 导出表格
   workbook.xlsx.writeBuffer().then((buffer) => {
+    console.log('====================================');
+    console.log(88888888888);
+    console.log('====================================');
     let _file = new Blob([buffer], {
       type: "application/octet-stream",
     });
