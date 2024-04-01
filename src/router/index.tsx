@@ -1,15 +1,18 @@
 import React from "react";
-import Home from "../excel";
-import Details from "../comment/details/index";
-import Gmme from "../comment/gmme/index";
-import Tchishe from "../comment/Tchishe/index";
+
+const Excel = React.lazy(() => import("../comment/excel/excel"));
+const Details = React.lazy(() => import("../comment/details/index"));
+const Gmme = React.lazy(() => import("../comment/gmme/index"));
+const Tchishe = React.lazy(() => import("../comment/Tchishe/index"));
+const Context = React.lazy(() => import("../comment/Context/index"));
+const Mine = React.lazy(() => import("../comment/mine/index"));
+
 // import Details from "../pages/details";
-import Mine from "../comment/mine";
 import { Navigate } from "react-router";
 const routes = [
   {
     path: "/demo",
-    element: <Home />,
+    element: <Excel />,
     children: [
       // {
       //     path:'params/:id/:title/:content',
@@ -30,7 +33,7 @@ const routes = [
     exact: true,
     element: (
       <>
-        <Tchishe/>
+        <Tchishe />
       </>
     ),
     children: [
@@ -41,6 +44,15 @@ const routes = [
     ],
   },
   {
+    path: "/Context",
+    exact: true,
+    element: (
+      <>
+        <Context />
+      </>
+    ),
+  },
+  {
     path: "/details",
     element: <Details />,
   },
@@ -48,7 +60,7 @@ const routes = [
     path: "/mine",
     element: (
       <>
-        <Mine/>
+        <Mine />
       </>
     ),
   },

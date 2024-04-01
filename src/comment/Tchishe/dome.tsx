@@ -1,16 +1,19 @@
-import React, { useContext } from "react";
-import { GuaContext } from "./index";
-import { Button } from "antd";
+import React, {  useContext } from "react";
+import Dome1 from "./dome1";
+import { GuaContext } from "./zizhujian";
 const dome = () => {
-  const { count, setCount }:any = useContext(GuaContext);
+  const { count }: any = useContext(GuaContext);
+  console.log("====================================");
+  console.log("5555555555555555");
+  console.log("====================================");
   return (
     <>
       <div>子组件的{count}</div>
-      <Button
-        onClick={() => {
-          setCount(count + 1);
-        }}
-      ></Button>
+      <div>-----------------------</div>
+      <div>
+        子子组件
+        <Dome1></Dome1>
+      </div>
     </>
   );
 };

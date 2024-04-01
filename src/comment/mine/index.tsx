@@ -51,21 +51,24 @@ const App: React.FC = () => {
         console.log("====================================");
       }
     );
-  }, []);
-  useEffect(() => {
     appendData();
   }, []);
 
   const onScroll = (e: React.UIEvent<HTMLElement, UIEvent>) => {
+    console.log("====================================");
+    console.log("onScroll");
+    console.log("====================================");
     if (
       e.currentTarget.scrollHeight - e.currentTarget.scrollTop ===
       ContainerHeight
     ) {
+      console.log("====================================");
+      console.log("appendData");
+      console.log("====================================");
       appendData();
     }
   };
 
- 
   return (
     <List>
       <VirtualList
